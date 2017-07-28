@@ -32,16 +32,15 @@ def login(ip,user,passw):
 
     print ("Bilgiler yükleniyor. Bu işlem bir kaç saniye sürebilir ..")
     dosya = open("trafic_log.txt", "w")
-    session.sendline("execute log filter category 7")
-    session.prompt()
-    dosya.write(session.before)
-    session.sendline("execute log filter device 2")
-    session.prompt()
-    dosya.write(session.before)
-    #session.sendline("execute log filter field policyid 50 ")
-
+    #session.sendline("execute log filter category 7")
     #session.prompt()
     #dosya.write(session.before)
+    session.sendline("execute log filter device 2")#fortigate sets disk as logging device . if you use f.analyzer you should use this command (device 2 )
+    session.prompt()
+    dosya.write(session.before)
+    session.sendline("execute log filter field policyid ??") # you should enter your policyid 
+    session.prompt()
+    dosya.write(session.before)
     session.sendline("execute log display ")
     session.prompt()
 
